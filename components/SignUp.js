@@ -1,0 +1,44 @@
+import styles from '../styles/Modal.module.css';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { useDispatch } from 'react-redux';
+
+function SignIn() {
+    //const dispatch = useDispatch();
+    const [signUpFirstname, setSignUpFirstname] = useState("");
+    const [signUpUsername, setSignUpUsername] = useState("");
+    const [signUpPassword, setSignUpPassword] = useState("");
+
+    const handleConnection = () => {
+        fetch('http://localhost:3000/users/signin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: signInUsername, password: signInPassword }),
+        }).then(response => response.json())
+            .then(data => {
+                if (data.result) {
+                    dispatch(login({ username: signInUsername, token: data.token }));
+                    setSignUpUsername('');
+                    setSignUpPassword('');
+                    setSignUpFirstname('');
+                }
+            });
+    };
+
+    return (
+        <div className={styles.content}>
+            <Image className={styles.logo} src="/logo-twitter-blanc-png.png" alt="logo" width={50} height={50}/>
+            <h2 style={{ color: "white" }}>HELLO I AM SIGN IN</h2>
+            <div className={styles.divtest}>
+                <input type="text" placeholder="Firstname" onChange={(e) => setSignUpFirstname(e.target.value)} value={signUpFirstname} />
+                <input type="text" placeholder="Username" onChange={(e) => setSignUpUsername(e.target.value)} value={signUpUsername} />
+                <input type="password" placeholder="Password" onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword} />
+            </div>
+            <button id="connection" onClick={() => handleConnection()} style={{ width: 200 }} >
+                Connect
+            </button>
+        </div>
+    );
+};
+
+export default SignIn;

@@ -1,54 +1,63 @@
 import styles from '../styles/Connection.module.css';
-import { Button, Popover } from 'antd';
-import 'antd/dist/antd.css';
+import { Modal } from 'antd';
+// import 'antd/dist/antd.css';
 import Image from 'next/image';
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 
-function Connection(){
-    const [username, setUsername] = useState('');
-    let content;
 
-    function handleSignIn(){
-        content = (
-            <div className={styles.content}>
-                <Image src='https://get-picto.com/wp-content/uploads/2023/10/Logo-twitter-blanc-png.webp' alt='logo' width={120} height={120} />
-                <h2>Connect to Hackatweet</h2>
-                <input onChange={(e)=> setUsername(e.target.value)} value={username}/>
-            </div>
-        )
-    }
+function Connection() {
+    
+    const [isSignIn, setIsSignIn] = useState(false);
+    const [isSignUp, setIsSignUp] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
-    function handleSignUp(){
+    
 
-    }
 
-    return(
+    const handleSignIn = () => {
+        setShowModal(true);
+        setIsSignIn(true);
+    };
+
+    const handleSignUp = () => {
+        setShowModal(true);
+        setIsSignUp(true);
+    };
+
+    
+
+    return (
         <main className={styles.main}>
             <div className={styles.divLeft}>
-                <Image src='https://get-picto.com/wp-content/uploads/2023/10/Logo-twitter-blanc-png.webp' alt='logo' width={400} height={250}/>
+                <Image className={styles.logo} src="/logo-twitter-blanc-png.png" alt='logo' width={400} height={400} />
             </div>
             <div className={styles.divRight}>
-                <Image src='https://get-picto.com/wp-content/uploads/2023/10/Logo-twitter-blanc-png.webp' alt='logo' width={120} height={120}/>
+                <Image className={styles.logo} src="/logo-twitter-blanc-png.png" alt='logo' width={120} height={120} />
                 <h1 className={styles.title}>See what's happening</h1>
                 <h3 className={styles.subTitle}>Join hackatweet today.</h3>
-                <Popover
-                content={content}
-                title="Title"
-                trigger="click"
-                placement="">
-                    <Button type="primary" className={styles.Button} onClick={() => handleSignUp()}>Sign-up</Button>
-                </Popover>
-                <p className={styles.paragraphe}>Already have an account ?</p>
-                <Popover
-                content={content}
-                title="Title"
-                trigger="click"
-                placement="">
-                    <Button type="primary" className={styles.Button} onClick={() => handleSignIn()}>Sign-in</Button>
-                </Popover>
+                <button type="primary" className={styles.Button} onClick={handleSignUp}>Sign-up</button>
+                <p className={styles.paragraphe}>Already have an account?</p>
+                <button type="primary" className={styles.Button} onClick={handleSignIn}>Sign-in</button>
             </div>
+            {showModal && isSignIn &&  (
+                <div id='react-modals'>
+                    <Modal getContainer="#react-modals" className={styles.modal} open={showModal} closable={false} footer={null}>
+                        <SignIn />
+                    </Modal>
+                </div>
+            )}
+            {showModal && isSignUp &&  (
+                <div id='react-modals'>
+                    <Modal getContainer="#react-modals" className={styles.modal} open={showModal} closable={false} footer={null}>
+                        <SignUp />
+                    </Modal>
+                </div>
+            )}
         </main>
-    )
+    );
 }
 
 export default Connection;

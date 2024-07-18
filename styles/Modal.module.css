@@ -1,0 +1,27 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 50vh;
+    background-color: #151D26;
+}
+
+.modal{
+    color: white;
+    height: 50vh;
+    width: 40vw;
+    border: 1px black solid;
+    border-radius: 5%;
+    background-color: #151D26;
+}
+
+.modals{
+    margin: 0;
+    padding: 0;
+    background-color: #151D26;
+}
+
+.logo{
+    transform: rotate(180deg);
+}
