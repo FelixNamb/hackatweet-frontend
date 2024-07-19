@@ -8,21 +8,23 @@ function Home() {
   return (
       <main className={styles.main}>
         <div className={styles.leftContent}>
-        <Image className={styles.logo} src="/logo-twitter-blanc-png.png" alt="logo" width={120} height={120}/>
+          <Image className={styles.logo} src="/logo-twitter-blanc-png.png" alt="logo" width={120} height={120}/>
           <div className={styles.bottomLeftContent}>
-            <div className={styles.imageUser}></div>
+            <Image className={styles.userPhoto} src="/user-photo.jpg" alt="profile photo" width={100} height={100}/>
             <div className={styles.user}></div>
+            <div className={styles.userContent}>
+              <div className={styles.firstname}></div>
+              <div className={styles.username}></div>
+            </div>
           </div>
-          <div className={styles.userContent}>
-            <div className={styles.firstname}></div>
-            <div className={styles.username}></div>
-          </div>
-        </div>
-        <div className={styles.topCenterContent}>
-          {/* <Tweet /> */}
         </div>
         <div className={styles.centerContent}>
-          {/* <LastTweets /> */}
+          <div className={styles.topCenterContent}>
+            <Tweet />
+          </div>
+          <div className={styles.bottomCenterContent}>
+            {/* <LastTweets /> */}
+          </div>
         </div>
         <div className={styles.rightContent}>
           {/* <Trends /> */}
