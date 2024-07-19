@@ -1,12 +1,13 @@
 import { useState } from "react";
+import styles from "../styles/LastTweets.module.css"
 import { useSelector, useDispatch } from "react-redux";
 import { addTweets, removeTweets } from "../reducers/tweets";
-import { FontAwesomeIcon } from "@fortawesome/react/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 function LastTweets(props) {
   const [likeTweet, setLikeTweet] = useState(0); //boolean
-  const nbLike = useSelector(state.nbLike.value);
+  const nbLike = useSelector((state) => state.nbLike.value);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
@@ -51,7 +52,8 @@ function LastTweets(props) {
         <div className={styles.heartIcon}>
           <div className={styles.heart}>
             <span>
-              {likeTweet} {nbLike}
+              {likeTweet} 
+              {nbLike}
             </span>
             <span>
               <FontAwesomeIcon

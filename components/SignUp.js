@@ -2,22 +2,24 @@ import styles from '../styles/Modal.module.css';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
+import { login } from '../reducers/user';
+import Link from 'next/link';
 
 function SignIn() {
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const [signUpFirstname, setSignUpFirstname] = useState("");
     const [signUpUsername, setSignUpUsername] = useState("");
     const [signUpPassword, setSignUpPassword] = useState("");
 
     const handleConnection = () => {
-        fetch('http://localhost:3000/users/signin', {
+        fetch('http://localhost:3000/users/signup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: signInUsername, password: signInPassword }),
+            body: JSON.stringify({ firstname: signUpFirstname, username: signUpUsername, password: signUpPassword }),
         }).then(response => response.json())
             .then(data => {
                 if (data.result) {
-                    dispatch(login({ username: signInUsername, token: data.token }));
+                    dispatch(login({ username: signUpUsername, token: data.token }));
                     setSignUpUsername('');
                     setSignUpPassword('');
                     setSignUpFirstname('');
@@ -34,9 +36,11 @@ function SignIn() {
                 <input type="text" placeholder="Username" onChange={(e) => setSignUpUsername(e.target.value)} value={signUpUsername} />
                 <input type="password" placeholder="Password" onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword} />
             </div>
-            <button id="connection" onClick={() => handleConnection()} style={{ width: 200 }} >
-                Connect
-            </button>
+            <Link href={"/"}>
+                <button id="connection" onClick={() => handleConnection()} style={{ width: 200 }} >
+                    Connect
+                </button>
+            </Link>
         </div>
     );
 };

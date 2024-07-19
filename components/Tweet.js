@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import styles from "../styles/Tweets.module.css";
 
 function Tweet(props) {
   return (
