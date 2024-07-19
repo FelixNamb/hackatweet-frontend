@@ -15,13 +15,17 @@
 }
 
 .tweet {
-  height: 50vh;
-  width: 120vw;
-  background-color: purple;
-  box-sizing: border-box;
-  font-family: sans-serif;
+  height: 7vh;
+  width: 35vw;
+  background-color: #151d26;
+  font-family: Verdana;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   margin: 20px;
   padding: 0;
+  color: white;
+  font-size: large;
 }
 
 .tweetInfos {
@@ -29,7 +33,7 @@
   width: 15vw;
   display: flex;
   justify-content: space-around;
-  align-items: end;
+  align-items: flex-end;
   padding-right: 10px;
   padding-bottom: 10px;
 }
