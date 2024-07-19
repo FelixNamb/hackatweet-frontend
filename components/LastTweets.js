@@ -1,5 +1,5 @@
-import { useState } from "react";
-import styles from "../styles/LastTweets.module.css";
+import { useEffect, useState } from "react";
+import styles from "../styles/Lasttweets.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { addTweets, removeTweets } from "../reducers/tweets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,46 +11,54 @@ function LastTweets(props) {
   const [isTheUser, setIsTheUser] = useState(false);
   const user = useSelector((state) => state.users.value);
 
-  
+  let heartIconStyle = { cursor: "pointer" };
 
-  if(props.username === user.username){
-    setIsTheUser(true);
-  }
+  const handleLikeTweet = () => {
+    if (!user.token) {
+      return;
+    }
+    if (props.isLiked) {
+      (heartIconStyle = { color: "#fa1674", cursor: "pointer" }), nbLike + 1;
+    } else {
+      heartIconStyle = { color: "white", cursor: "pointer" };
+    }
+  };
+
+  const handleDeleteTweet = () => {
+    if (!user.token) {
+      return;
+    }
+    fetch(`http:localhost:3000/tweets`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user: user, message: props.message, date: props.date }),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.result && data.canUseTweet) {
+          if (props.isTweeted) {
+            dispatch(removeTweets(props));
+          } else {
+            dispatch(addTweets(props));
+          }
+        }
+      });
+  };
+
+
+  useEffect(()=>{
+    if(props.username === user.username){
+      setIsTheUser(true);
+    }
+  }, [])
+  
   const profilePicture = {
     borderRadius: '50%', 
   }
 
-  // const handleLikeTweet = () => {
-  //   if (!user.token) {
-  //     return;
-  //   }
-  //   let heartIconStyle = { cursor: "pointer" };
-  //   if (props.isLiked) {
-  //     (heartIconStyle = { color: "#fa1674", cursor: "pointer" }), nbLike + 1;
-  //   } else {
-  //     heartIconStyle = { color: "white", cursor: "pointer" };
-  //   }
-  // };
-
-  // const handleModifyTweet = () => {
-  //   if (!user.token) {
-  //     return;
-  //   }
-  //   fetch(`http:localhost:3000/users/canUseTweet/${user.token}`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (data.result && data.canUseTweet) {
-  //         if (props.isTweeted) {
-  //           dispatch(removeTweets(props));
-  //         } else {
-  //           dispatch(addTweets(props));
-  //         }
-  //       }
-  //     });
-  // };
   return (
-    <div style={styles.principalDiv}>
-      <div style={styles.user}>
+    <div className={styles.principalDiv}>
+      <div className={styles.user}>
         <Image
           className={styles.userPhoto}
           style={profilePicture}
@@ -62,8 +70,8 @@ function LastTweets(props) {
         <p className={styles.firstname}>{props.firstname}</p>
         <p className={styles.username}>@{props.username}</p>
       </div>
-      <p>{props.message}</p>
-      <div>
+      <p className={styles.paragraph}>{props.message}</p>
+      <div className={styles.lastDiv}>
         <FontAwesomeIcon 
         icon={faHeart}
         // style={heartIconStyle}

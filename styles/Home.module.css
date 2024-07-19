@@ -12,7 +12,6 @@
   align-items: flex-start;
   height: 100vh;
   width: 27vw;
-  border-right: 1px solid grey;
   padding-left: 2em;
   padding-bottom: 1em;
 }
@@ -73,13 +72,17 @@
 .logout:hover{
   background-color: white;
   color: #151D26;
-  border: 1px solid #151D26;
+  border: 1px solid #96b2d3;
+}
+
+.divider{
+  border-left: 1px solid grey;
+  min-height: 100vh;
 }
 
 .centerContent{
   width: 40vw;
   min-height: 100vh;
-  border-right: solid 1px grey;
 }
 
 .topCenterContent{

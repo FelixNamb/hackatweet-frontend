@@ -65,6 +65,7 @@ function Home() {
           </div>
         </div>
       </div>
+      <div className={styles.divider}></div>
       <div className={styles.centerContent}>
         <p className={styles.title}>{titleHomePage}</p>
         <div className={styles.topCenterContent}>
@@ -74,9 +75,11 @@ function Home() {
           {tweets}
         </div>
       </div>
+      <div className={styles.divider}></div>
       <div className={styles.rightContent}>
-      <p className={styles.title}>Trends</p>
-        {/* <Trends /> */}</div>
+        <p className={styles.title}>Trends</p>
+        {/* <Trends /> */}
+      </div>
     </main>
   );
 }

@@ -1,0 +1,35 @@
+.principalDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: space-around;
+    margin-top: 1rem;
+    border-bottom: 1px solid grey;
+}
+
+.user{
+    display: flex;
+    margin-left: 1rem;
+}
+
+.firstname{
+    color: white;
+    margin-right: 2px ;
+}
+.username{
+    color: grey;
+    font-weight: 200;
+}
+
+.paragraph{
+    color: white;
+    margin-left:1rem ;
+}
+
+.lastDiv{
+    display: flex;
+    width: 5vw;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    margin-left:1rem ;
+}
