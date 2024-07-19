@@ -1,8 +1,8 @@
 import { useState } from "react";
-import styles from "../styles/LastTweets.module.css"
+import styles from "../styles/LastTweets.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { addTweets, removeTweets } from "../reducers/tweets";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 function LastTweets(props) {
@@ -52,7 +52,7 @@ function LastTweets(props) {
         <div className={styles.heartIcon}>
           <div className={styles.heart}>
             <span>
-              {likeTweet} 
+              {likeTweet}
               {nbLike}
             </span>
             <span>
