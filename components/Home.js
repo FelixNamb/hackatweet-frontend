@@ -27,6 +27,8 @@ function Home() {
     })
   });
 
+  const tweets = tweetsData.map()
+
 
 
   function handleLogout(){
