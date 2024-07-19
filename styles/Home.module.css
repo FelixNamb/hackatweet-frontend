@@ -85,3 +85,9 @@
 .topCenterContent{
   border-bottom: solid 1px grey;
 }
+
+
+.title{
+  color: white;
+  margin-left: 1rem;
+}

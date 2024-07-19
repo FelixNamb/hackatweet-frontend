@@ -6,14 +6,28 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../reducers/user";
 import Link from 'next/link';
+import { useState, useEffect } from "react";
 
 function Home() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users.value);
+  const [titleHomePage, setTitleHomePage] = useState('Home');
+  const [tweetsData, setTweetsData] = useState([]);
 
   const profilePicture = {
     borderRadius: '50%', 
   }
+
+  useEffect(()=>{
+    fetch('http://localhost:3000/tweets')
+    .populate("user")
+    .then(response => response.json())
+    .then(data => {
+      setTweetsData(data.data);
+    })
+  });
+
+
 
   function handleLogout(){
     dispatch(logout());
@@ -49,6 +63,7 @@ function Home() {
         </div>
       </div>
       <div className={styles.centerContent}>
+        <h1 className={styles.title}>{titleHomePage}</h1>
         <div className={styles.topCenterContent}>
           <Tweet />
         </div>
