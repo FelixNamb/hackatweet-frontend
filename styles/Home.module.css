@@ -44,6 +44,7 @@
 .firstname{
   color: white;
   font-weight: 500;
+  margin-right: 2px;
 }
 
 .username{

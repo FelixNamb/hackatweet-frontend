@@ -31,11 +31,9 @@ function SignIn() {
         <div className={styles.content}>
             <Image className={styles.logo} src="/logo-twitter-blanc-png.png" alt="logo" width={50} height={50}/>
             <h2 style={{ color: "white" }}>HELLO I AM SIGN IN</h2>
-            <div className={styles.divtest}>
-                <input type="text" placeholder="Firstname" onChange={(e) => setSignUpFirstname(e.target.value)} value={signUpFirstname} />
-                <input type="text" placeholder="Username" onChange={(e) => setSignUpUsername(e.target.value)} value={signUpUsername} />
-                <input type="password" placeholder="Password" onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword} />
-            </div>
+            <input type="text" placeholder="Firstname" onChange={(e) => setSignUpFirstname(e.target.value)} value={signUpFirstname} />
+            <input type="text" placeholder="Username" onChange={(e) => setSignUpUsername(e.target.value)} value={signUpUsername} />
+            <input type="password" placeholder="Password" onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword} />
             <Link href={"/"}>
                 <button id="connection" onClick={() => handleConnection()} style={{ width: 200 }} >
                     Connect
