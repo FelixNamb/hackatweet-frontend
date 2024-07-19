@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 function LastTweets(props) {
-  const [likeTweet, setLikeTweet] = useState(0); //boolean
+  const [likeTweet, setLikeTweet] = props.isLiked;
   const nbLike = useSelector(state.nbLike.value);
 
   const dispatch = useDispatch();
