@@ -2,14 +2,13 @@ import styles from "../styles/Home.module.css";
 import Tweet from "./Tweet";
 import LastTweets from "./LastTweets";
 import Trends from "./Trends";
+import Image from 'next/image';
 
 function Home() {
   return (
-    <div>
       <main className={styles.main}>
-        <h1>Welcome</h1>
         <div className={styles.leftContent}>
-          <div className={styles.logo}></div>
+        <Image className={styles.logo} src="/logo-twitter-blanc-png.png" alt="logo" width={120} height={120}/>
           <div className={styles.bottomLeftContent}>
             <div className={styles.imageUser}></div>
             <div className={styles.user}></div>
@@ -29,7 +28,6 @@ function Home() {
           {/* <Trends /> */}
         </div>
       </main>
-    </div>
   );
 }
 
