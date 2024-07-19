@@ -35,12 +35,8 @@ function LastTweets(props) {
       })
       .then((response) => response.json())
       .then((data) => {
-        if (data.result && data.canUseTweet) {
-          if (props.isTweeted) {
-            dispatch(removeTweets(props));
-          } else {
-            dispatch(addTweets(props));
-          }
+        if (data.result) {
+          dispatch(removeTweets(props.message));   
         }
       });
   };
