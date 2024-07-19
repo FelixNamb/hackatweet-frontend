@@ -24,9 +24,17 @@ function Home() {
       .then((data) => {
         setTweetsData(data.data);
       });
-  }, []);
+  });
 
-  //const tweets = tweetsData.map()
+  const tweets = tweetsData.map((data, i) => {
+    return (
+      <LastTweets
+        key={i}
+        {...data}
+        style={{ borderBottom: "1px solid grey" }}
+      />
+    );
+  });
 
   function handleLogout() {
     dispatch(logout());
@@ -65,16 +73,20 @@ function Home() {
           </div>
         </div>
       </div>
+      <div className={styles.divider}></div>
       <div className={styles.centerContent}>
-        <h1 className={styles.title}>{titleHomePage}</h1>
+        <p className={styles.title}>{titleHomePage}</p>
         <div className={styles.topCenterContent}>
           <Tweet />
         </div>
-        <div className={styles.bottomCenterContent}>{/* <LastTweets /> */}</div>
+        <div className={styles.bottomCenterContent}>{tweets}</div>
       </div>
+      <div className={styles.divider}></div>
       <div className={styles.rightContent}>
-        <Trends />
+        <p className={styles.title}>Trends</p>
+        {/* <Trends /> */}
       </div>
+      <div className={styles.rightContent}>{/* <Trends /> */}</div>
     </main>
   );
 }

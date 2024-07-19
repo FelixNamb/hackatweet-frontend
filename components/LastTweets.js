@@ -1,22 +1,22 @@
-import { useState } from "react";
-import styles from "../styles/LastTweets.module.css";
+import { useEffect, useState } from "react";
+import styles from "../styles/Lasttweets.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { addTweets, removeTweets } from "../reducers/tweets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart,faTrash } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 
 function LastTweets(props) {
-  const [likeTweet, setLikeTweet] = useState(0); //boolean
-  const nbLike = useSelector((state) => state.nbLike.value);
-
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.value);
+  const [isTheUser, setIsTheUser] = useState(false);
+  const user = useSelector((state) => state.users.value);
+
+  let heartIconStyle = { cursor: "pointer" };
 
   const handleLikeTweet = () => {
     if (!user.token) {
       return;
     }
-    let heartIconStyle = { cursor: "pointer" };
     if (props.isLiked) {
       (heartIconStyle = { color: "#fa1674", cursor: "pointer" }), nbLike + 1;
     } else {
@@ -24,48 +24,58 @@ function LastTweets(props) {
     }
   };
 
-  const handleModifyTweet = () => {
+  const handleDeleteTweet = () => {
     if (!user.token) {
       return;
     }
-    fetch(`http:localhost:3000/users/canUseTweet/${user.token}`)
+    fetch(`http:localhost:3000/tweets`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user: user, message: props.message, date: props.date }),
+      })
       .then((response) => response.json())
       .then((data) => {
-        if (data.result && data.canUseTweet) {
-          if (props.isTweeted) {
-            dispatch(removeTweets(props));
-          } else {
-            dispatch(addTweets(props));
-          }
+        if (data.result) {
+          dispatch(removeTweets(props.message));   
         }
       });
   };
+
+
+  useEffect(()=>{
+    if(props.username === user.username){
+      setIsTheUser(true);
+    }
+  }, [])
+  
+  const profilePicture = {
+    borderRadius: '50%', 
+  }
+
   return (
-    <div className={styles.centerContent}>
-      <div className={styles.userTweet} onClick={handleModifyTweet()}>
-        <div className={styles.imageUsernameCenter}></div>
-        <div className={styles.firstnameCenter}></div>
-        <div className={styles.userUsernameCenter}></div>
+    <div className={styles.principalDiv}>
+      <div className={styles.user}>
+        <Image
+          className={styles.userPhoto}
+          style={profilePicture}
+          src="/user-photo.jpg"
+          alt="profile photo"
+          width={50}
+          height={50}
+        />
+        <p className={styles.firstname}>{props.firstname}</p>
+        <p className={styles.username}>@{props.username}</p>
       </div>
-      <div className={styles.tweetContent}>
-        <div className={styles.tweet2}></div>
-        <div className={styles.heartIcon}>
-          <div className={styles.heart}>
-            <span>
-              {likeTweet}
-              {nbLike}
-            </span>
-            <span>
-              <FontAwesomeIcon
-                icon={faHeart}
-                onClick={() => handleLikeTweet()}
-                style={heartIconStyle}
-                className="like"
-              />
-            </span>
-          </div>
-          <div className={styles.heartCount}></div>
-        </div>
+      <p className={styles.paragraph}>{props.message}</p>
+      <div className={styles.lastDiv}>
+        <FontAwesomeIcon 
+        icon={faHeart}
+        // style={heartIconStyle}
+        cursor={'pointer'}
+        onClick={() => handleLikeTweet()}
+        />
+        {/* {nbLike} */}
+        {isTheUser && <FontAwesomeIcon icon={faTrash} cursor={'pointer'} onClick={() => handleDeleteTweet()}/>}
       </div>
     </div>
   );
