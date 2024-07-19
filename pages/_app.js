@@ -3,11 +3,11 @@ import Head from 'next/head';
 
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import {tweets} from '../reducers/tweets';
-import {users} from '../reducers/user';
+import tweets from '../reducers/tweets';
+import users from '../reducers/user';
 
 const store = configureStore({
-  reducer: { tweets,users },
+  reducer: { tweets , users },
 });
 
 

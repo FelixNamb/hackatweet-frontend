@@ -7,6 +7,7 @@ function Home() {
   return (
     <div>
       <main className={styles.main}>
+        <h1>Welcome</h1>
         <div className={styles.leftContent}>
           <div className={styles.logo}></div>
           <div className={styles.bottomLeftContent}>
@@ -18,9 +19,15 @@ function Home() {
             <div className={styles.username}></div>
           </div>
         </div>
-        <div className={styles.topCenterContent}>{Tweet}</div>
-        <div className={styles.centerContent}>{LastTweets}</div>
-        <div className={styles.rightContent}>{Trends}</div>
+        <div className={styles.topCenterContent}>
+          {/* <Tweet /> */}
+        </div>
+        <div className={styles.centerContent}>
+          {/* <LastTweets /> */}
+        </div>
+        <div className={styles.rightContent}>
+          {/* <Trends /> */}
+        </div>
       </main>
     </div>
   );

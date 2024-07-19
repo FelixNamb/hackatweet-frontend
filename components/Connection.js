@@ -70,7 +70,7 @@ function Connection() {
             getContainer="#react-modals"
             className={styles.modal}
             open={showModal}
-            closable={false}
+            closable={true}
             footer={null}
           >
             <SignUp />
