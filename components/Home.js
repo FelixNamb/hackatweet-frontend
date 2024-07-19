@@ -5,32 +5,30 @@ import Trends from "./Trends";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../reducers/user";
-import Link from 'next/link';
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 function Home() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users.value);
-  const [titleHomePage, setTitleHomePage] = useState('Home');
+  const [titleHomePage, setTitleHomePage] = useState("Home");
   const [tweetsData, setTweetsData] = useState([]);
 
   const profilePicture = {
-    borderRadius: '50%', 
-  }
+    borderRadius: "50%",
+  };
 
-  useEffect(()=>{
-    fetch('http://localhost:3000/tweets')
-    .then(response => response.json())
-    .then(data => {
-      setTweetsData(data.data);
-    })
-  });
+  useEffect(() => {
+    fetch("http://localhost:3000/tweets")
+      .then((response) => response.json())
+      .then((data) => {
+        setTweetsData(data.data);
+      });
+  }, []);
 
   //const tweets = tweetsData.map()
 
-
-
-  function handleLogout(){
+  function handleLogout() {
     dispatch(logout());
   }
   return (
@@ -59,7 +57,11 @@ function Home() {
             </div>
           </div>
           <div className={styles.botBottomLeftContent}>
-            <Link href={"/"}><button className={styles.logout} onClick={() => handleLogout()}>Logout</button></Link>
+            <Link href={"/"}>
+              <button className={styles.logout} onClick={() => handleLogout()}>
+                Logout
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -70,7 +72,9 @@ function Home() {
         </div>
         <div className={styles.bottomCenterContent}>{/* <LastTweets /> */}</div>
       </div>
-      <div className={styles.rightContent}>{/* <Trends /> */}</div>
+      <div className={styles.rightContent}>
+        <Trends />
+      </div>
     </main>
   );
 }

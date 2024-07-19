@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
 import styles from "../styles/Tweets.module.css";
 import { useState } from "react";
 
@@ -13,7 +12,7 @@ function Tweet(props) {
         type="search"
         id="tweet"
         name="tweet"
-        maxlength="280"
+        maxLength="280"
         size="10"
         placeholder="What's up ?"
         onChange={(e) => {

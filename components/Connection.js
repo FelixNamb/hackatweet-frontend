@@ -47,7 +47,11 @@ function Connection() {
           Sign-up
         </button>
         <p className={styles.paragraphe}>Already have an account?</p>
-        <button type="primary" className={styles.Button} onClick={handleSignIn}>
+        <button
+          type="primary"
+          className={styles.ButtonSignIn}
+          onClick={handleSignIn}
+        >
           Sign-in
         </button>
       </div>
