@@ -14,6 +14,7 @@
   width: 27vw;
   border-right: 1px solid grey;
   padding-left: 2em;
+  padding-bottom: 1em;
 }
 
 .logo{
@@ -21,14 +22,58 @@
 }
 .bottomLeftContent{
   display: flex;
+  flex-direction: column;
+  width: 15vw;
+  margin-bottom: 1em;
 }
 
-.user-photo{
-  border-radius: 50%;
+.topBottomLeftContent{
+  display: flex;
+  height: 7em;
+  justify-content: center;
+  align-items: center;
 }
 
+.userContent{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 1em;
+}
 
+.firstname{
+  color: white;
+  font-weight: 500;
+}
 
+.username{
+  color: grey;
+  font-weight: 200;
+}
+
+.botBottomLeftContent{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 1.5em;
+}
+
+.logout{
+  width: 5rem;
+  height:2rem;
+  color: white;
+  font-weight: 500;
+  background-color: #151D26;
+  border: 1px solid white;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.logout:hover{
+  background-color: white;
+  color: #151D26;
+  border: 1px solid #151D26;
+}
 
 .centerContent{
   width: 40vw;

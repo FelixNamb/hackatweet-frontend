@@ -19,7 +19,7 @@ function SignIn() {
         }).then(response => response.json())
             .then(data => {
                 if (data.result) {
-                    dispatch(login({ username: signUpUsername, token: data.token }));
+                    dispatch(login({ username: signUpUsername, token: data.token, firstname: signUpFirstname }));
                     setSignUpUsername('');
                     setSignUpPassword('');
                     setSignUpFirstname('');
