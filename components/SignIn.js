@@ -31,7 +31,7 @@ function SignIn() {
             <h2 style={{ color: "white" }}>HELLO I AM SIGN IN</h2>
             <input type="text" placeholder="Username" onChange={(e) => setSignInUsername(e.target.value)} value={signInUsername} />
             <input type="password" placeholder="Password" onChange={(e) => setSignInPassword(e.target.value)} value={signInPassword} />
-            <Link href={"/"}>
+            <Link href={"/home"}>
                 <button id="connection" onClick={() => handleConnection()} style={{ width: 200 }} >
                     Connect
                 </button>

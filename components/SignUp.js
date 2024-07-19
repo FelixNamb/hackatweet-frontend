@@ -34,7 +34,7 @@ function SignIn() {
             <input type="text" placeholder="Firstname" onChange={(e) => setSignUpFirstname(e.target.value)} value={signUpFirstname} />
             <input type="text" placeholder="Username" onChange={(e) => setSignUpUsername(e.target.value)} value={signUpUsername} />
             <input type="password" placeholder="Password" onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword} />
-            <Link href={"/"}>
+            <Link href={"/home"}>
                 <button id="connection" onClick={() => handleConnection()} style={{ width: 200 }} >
                     Connect
                 </button>

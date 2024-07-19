@@ -20,14 +20,13 @@ function Home() {
 
   useEffect(()=>{
     fetch('http://localhost:3000/tweets')
-    .populate("user")
     .then(response => response.json())
     .then(data => {
       setTweetsData(data.data);
     })
   });
 
-  const tweets = tweetsData.map()
+  //const tweets = tweetsData.map()
 
 
 
@@ -60,7 +59,7 @@ function Home() {
             </div>
           </div>
           <div className={styles.botBottomLeftContent}>
-            <Link href={"/connection"}><button className={styles.logout} onClick={() => handleLogout()}>Logout</button></Link>
+            <Link href={"/"}><button className={styles.logout} onClick={() => handleLogout()}>Logout</button></Link>
           </div>
         </div>
       </div>
