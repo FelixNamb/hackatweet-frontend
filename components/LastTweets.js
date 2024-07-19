@@ -3,7 +3,7 @@ import styles from "../styles/Lasttweets.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { addTweets, removeTweets } from "../reducers/tweets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart,faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 
 function LastTweets(props) {
@@ -29,28 +29,31 @@ function LastTweets(props) {
       return;
     }
     fetch(`http:localhost:3000/tweets`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ user: user, message: props.message, date: props.date }),
-      })
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user: user,
+        message: props.message,
+        date: props.date,
+      }),
+    })
       .then((response) => response.json())
       .then((data) => {
         if (data.result) {
-          dispatch(removeTweets(props.message));   
+          dispatch(removeTweets(props.message));
         }
       });
   };
 
-
-  useEffect(()=>{
-    if(props.username === user.username){
+  useEffect(() => {
+    if (props.username === user.username) {
       setIsTheUser(true);
     }
-  }, [])
-  
+  }, []);
+
   const profilePicture = {
-    borderRadius: '50%', 
-  }
+    borderRadius: "50%",
+  };
 
   return (
     <div className={styles.principalDiv}>
@@ -68,14 +71,20 @@ function LastTweets(props) {
       </div>
       <p className={styles.paragraph}>{props.message}</p>
       <div className={styles.lastDiv}>
-        <FontAwesomeIcon 
-        icon={faHeart}
-        // style={heartIconStyle}
-        cursor={'pointer'}
-        onClick={() => handleLikeTweet()}
+        <FontAwesomeIcon
+          icon={faHeart}
+          style={heartIconStyle}
+          cursor={"pointer"}
+          onClick={() => handleLikeTweet()}
         />
         {/* {nbLike} */}
-        {isTheUser && <FontAwesomeIcon icon={faTrash} cursor={'pointer'} onClick={() => handleDeleteTweet()}/>}
+        {isTheUser && (
+          <FontAwesomeIcon
+            icon={faTrash}
+            cursor={"pointer"}
+            onClick={() => handleDeleteTweet()}
+          />
+        )}
       </div>
     </div>
   );
